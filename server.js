@@ -65,6 +65,48 @@ app.post("/students",(req,res)=>{
         message : "Student added successfully"
     });
 });
+
+app.delete("/students/:id",(req,res)=>{
+    const id = Number(req.params.id);
+    const ind = students.findIndex(s=> s.id ===id);
+    if(ind !== -1){
+        students.splice(ind,1);
+        res.status(200).json({
+            "message" : "Student deleted Successfully"
+        });
+    }
+    else res.status(404).json({
+        "message" : "Invalid Index or ID"
+    });
+});
+
+
+app.put("/students/:id",(req,res)=>{
+    const id = Number(req.params.id);
+    const newname = String(req.body.name);
+    const course = String(req.body.course);
+    const pr = students.find(s=>s.id===id);
+    if(!pr) {
+        return res.status(404).json({
+            "message" : "Student Not Found "
+        });
+    }
+    
+      pr.name = newname;
+      pr.course = course;
+      students.push({
+    id,
+    newname,
+    course
+});
+
+      res.status(201).json({
+        "message" : "Student details updated"
+      });
+      
+
+
+});
 app.listen(PORT,()=>{
     console.log(`Server running on ${PORT}`);
 });
