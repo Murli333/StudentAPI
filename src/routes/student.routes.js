@@ -33,5 +33,7 @@ router.put("/students/:id",updateStudent);
 
 router.delete("/students/:id",deleteStudent);
 
+router.patch("/students/:id", updateStudent);
+
 module.exports = router;
 
