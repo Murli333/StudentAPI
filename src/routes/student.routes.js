@@ -31,5 +31,7 @@ router.post("/students/:id",deleteStudent);
 
 router.put("/students/:id",updateStudent);
 
+router.delete("/students/:id",deleteStudent);
+
 module.exports = router;
 
